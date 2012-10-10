@@ -16,6 +16,7 @@ July 25th, 2011
 
 Authors:
 Neil Jedrzejewski & Ryan Gregg
+Edits by Spencer Alves
 
 Build:
 1.3.2
@@ -23,10 +24,12 @@ Build:
 Email:
 jed@wunderboy.org (Neil Jedrzejewski)
 ryansgregg@hotmail.com (Ryan Gregg)
+spencer@boatcake.net (Spencer Alves)
 
 Website:
 http://www.wunderboy.org/ (Neil Jedrzejewski)
 http://nemesis.thewavelength.net/ (Ryan Gregg)
+http://www.boatcake.net/ (Spencer Alves)
 
 Written In:
 C/C++
