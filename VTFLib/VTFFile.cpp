@@ -58,7 +58,7 @@
 
 using namespace VTFLib;
 
-#ifdef USE_NVDXT
+#ifdef USE_NVDXT10
 struct SNVCompressionUserData
 {
 public:
@@ -1040,22 +1040,26 @@ vlBool CVTFFile::IsLoaded() const
 
 vlBool CVTFFile::Load(const vlChar *cFileName, vlBool bHeaderOnly)
 {
-	return this->Load(&IO::Readers::CFileReader(cFileName), bHeaderOnly);
+	IO::Readers::CFileReader i = IO::Readers::CFileReader(cFileName);
+	return this->Load(&i, bHeaderOnly);
 }
 
 vlBool CVTFFile::Load(const vlVoid *lpData, vlUInt uiBufferSize, vlBool bHeaderOnly)
 {
-	return this->Load(&IO::Readers::CMemoryReader(lpData, uiBufferSize), bHeaderOnly);
+	IO::Readers::CMemoryReader i = IO::Readers::CMemoryReader(lpData, uiBufferSize);
+	return this->Load(&i, bHeaderOnly);
 }
 
 vlBool CVTFFile::Load(vlVoid *pUserData, vlBool bHeaderOnly)
 {
-	return this->Load(&IO::Readers::CProcReader(pUserData), bHeaderOnly);
+	IO::Readers::CProcReader i = IO::Readers::CProcReader(pUserData);
+	return this->Load(&i, bHeaderOnly);
 }
 
 vlBool CVTFFile::Save(const vlChar *cFileName) const
 {
-	return this->Save(&IO::Writers::CFileWriter(cFileName));
+	IO::Writers::CFileWriter i = IO::Writers::CFileWriter(cFileName);
+	return this->Save(&i);
 }
 
 vlBool CVTFFile::Save(vlVoid *lpData, vlUInt uiBufferSize, vlUInt &uiSize) const
@@ -1073,7 +1077,8 @@ vlBool CVTFFile::Save(vlVoid *lpData, vlUInt uiBufferSize, vlUInt &uiSize) const
 
 vlBool CVTFFile::Save(vlVoid *pUserData) const
 {
-	return this->Save(&IO::Writers::CProcWriter(pUserData));
+	IO::Writers::CProcWriter i = IO::Writers::CProcWriter(pUserData);
+	return this->Save(&i);
 }
 
 // -----------------------------------------------------------------------------------

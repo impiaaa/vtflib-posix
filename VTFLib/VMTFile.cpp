@@ -11,6 +11,7 @@
 
 #include "VTFLib.h"
 #include "VMTFile.h"
+#include <cctype>
 
 using namespace VTFLib;
 using namespace VTFLib::Nodes;
@@ -58,22 +59,29 @@ vlBool CVMTFile::IsLoaded() const
 
 vlBool CVMTFile::Load(const vlChar *cFileName)
 {
-	return this->Load(&IO::Readers::CFileReader(cFileName));
+	IO::Readers::CFileReader i = IO::Readers::CFileReader(cFileName);
+	vlBool r = this->Load(&i);
+	return r;
 }
 
 vlBool CVMTFile::Load(const vlVoid *lpData, vlUInt uiBufferSize)
 {
-	return this->Load(&IO::Readers::CMemoryReader(lpData, uiBufferSize));
+	IO::Readers::CMemoryReader i = IO::Readers::CMemoryReader(lpData, uiBufferSize);
+	vlBool r = this->Load(&i);
+	return r;
 }
 
 vlBool CVMTFile::Load(vlVoid *pUserData)
 {
-	return this->Load(&IO::Readers::CProcReader(pUserData));
+	IO::Readers::CProcReader i = IO::Readers::CProcReader(pUserData);
+	vlBool r = this->Load(&i);
+	return r;
 }
 
 vlBool CVMTFile::Save(const vlChar *cFileName) const
 {
-	return this->Save(&IO::Writers::CFileWriter(cFileName));
+	IO::Writers::CFileWriter w = IO::Writers::CFileWriter(cFileName);
+	return this->Save(&w);
 }
 
 vlBool CVMTFile::Save(vlVoid *lpData, vlUInt uiBufferSize, vlUInt &uiSize) const
@@ -91,7 +99,8 @@ vlBool CVMTFile::Save(vlVoid *lpData, vlUInt uiBufferSize, vlUInt &uiSize) const
 
 vlBool CVMTFile::Save(vlVoid *pUserData) const
 {
-	return this->Save(&IO::Writers::CProcWriter(pUserData));
+	IO::Writers::CProcWriter i = IO::Writers::CProcWriter(pUserData);
+	return this->Save(&i);
 }
 
 enum EToken

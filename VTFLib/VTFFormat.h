@@ -363,7 +363,7 @@ struct SVTFHeader_70 : public SVTFFileHeader
 	vlByte			LowResImageHeight;				//!< Thumbnail image height
 };
 
-#ifdef WIN32
+#ifdef _WIN32
 #define ALIGN_BEFORE __declspec(align(16))
 #define ALIGN_AFTER
 #else
